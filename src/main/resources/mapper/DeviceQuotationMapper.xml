@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.fims.mapper.DeviceQuotationMapper">
+    <sql id="resultColumns">
+DeviceQuotation.Id as id
+,DeviceQuotation.AuditFlowId as auditflowid
+,DeviceQuotation.SolutionId as solutionid
+,DeviceQuotation.DeviceName as devicename
+,DeviceQuotation.DevicePrice as deviceprice
+,DeviceQuotation.Number as number
+,DeviceQuotation.equipmentMoney as equipmentmoney
+,DeviceQuotation.CreationTime as creationtime
+,DeviceQuotation.CreatorUserId as creatoruserid
+,DeviceQuotation.LastModificationTime as lastmodificationtime
+,DeviceQuotation.LastModifierUserId as lastmodifieruserid
+,DeviceQuotation.IsDeleted as isdeleted
+,DeviceQuotation.DeleterUserId as deleteruserid
+,DeviceQuotation.DeletionTime as deletiontime
+,DeviceQuotation.version as version
+,DeviceQuotation.ntype as ntype
+
+
+    </sql>
+    <sql id="dynamicCondition">
+        <where>
+            1=1
+            <if test="id!= null"> 
+ and DeviceQuotation.Id = #{id}  
+</if>
+<if test="auditflowid!= null"> 
+ and DeviceQuotation.AuditFlowId = #{auditflowid}  
+</if>
+<if test="solutionid!= null"> 
+ and DeviceQuotation.SolutionId = #{solutionid}  
+</if>
+<if test="devicename != null and devicename != ''"> 
+ and DeviceQuotation.DeviceName like concat(concat('%',#{devicename}),'%')  
+</if>
+<if test="deviceprice!= null"> 
+ and DeviceQuotation.DevicePrice = #{deviceprice}  
+</if>
+<if test="number!= null"> 
+ and DeviceQuotation.Number = #{number}  
+</if>
+<if test="equipmentmoney!= null"> 
+ and DeviceQuotation.equipmentMoney = #{equipmentmoney}  
+</if>
+<if test="creationtime != null and creationtime != ''"> 
+ and DeviceQuotation.CreationTime like concat(concat('%',#{creationtime}),'%')  
+</if>
+<if test="creatoruserid!= null"> 
+ and DeviceQuotation.CreatorUserId = #{creatoruserid}  
+</if>
+<if test="lastmodificationtime != null and lastmodificationtime != ''"> 
+ and DeviceQuotation.LastModificationTime like concat(concat('%',#{lastmodificationtime}),'%')  
+</if>
+<if test="lastmodifieruserid!= null"> 
+ and DeviceQuotation.LastModifierUserId = #{lastmodifieruserid}  
+</if>
+<if test="isdeleted!= null"> 
+ and DeviceQuotation.IsDeleted = #{isdeleted}  
+</if>
+<if test="deleteruserid!= null"> 
+ and DeviceQuotation.DeleterUserId = #{deleteruserid}  
+</if>
+<if test="deletiontime != null and deletiontime != ''"> 
+ and DeviceQuotation.DeletionTime like concat(concat('%',#{deletiontime}),'%')  
+</if>
+<if test="version!= null"> 
+ and DeviceQuotation.version = #{version}  
+</if>
+<if test="ntype!= null"> 
+ and DeviceQuotation.ntype = #{ntype}  
+</if>
+
+        </where>
+    </sql>
+
+    <select id="getObjectById"   parameterType="com.sunny.fims.entity.DeviceQuotation"
+            resultType="com.sunny.fims.entity.DeviceQuotation">
+        select
+        <include refid="resultColumns"/>
+        from DeviceQuotation DeviceQuotation where id=#{id}
+    </select>
+
+    <select id="queryList" parameterType="com.sunny.fims.entity.DeviceQuotation"
+            resultType="com.sunny.fims.entity.DeviceQuotation">
+        select
+        <include refid="resultColumns"/>
+        from DeviceQuotation DeviceQuotation
+        <include refid="dynamicCondition"/>
+    </select>
+    <select id="selectForPage"   resultType="com.sunny.fims.entity.DeviceQuotation">
+        select
+        <include refid="resultColumns"/>
+        from DeviceQuotation DeviceQuotation
+        <if test="DeviceQuotation != null ">
+
+
+            </if>
+
+    </select>
+
+
+    <insert id="insert" parameterType="com.sunny.fims.entity.DeviceQuotation">
+        INSERT INTO DeviceQuotation (ID,ID
+,AUDITFLOWID
+,SOLUTIONID
+,DEVICENAME
+,DEVICEPRICE
+,NUMBER
+,EQUIPMENTMONEY
+,CREATIONTIME
+,CREATORUSERID
+,LASTMODIFICATIONTIME
+,LASTMODIFIERUSERID
+,ISDELETED
+,DELETERUSERID
+,DELETIONTIME
+,VERSION
+,NTYPE
+) values(DeviceQuotation_SEQ.NEXTVAL
+,#{id,jdbcType=DECIMAL}
+,#{auditflowid,jdbcType=DECIMAL}
+,#{solutionid,jdbcType=DECIMAL}
+,#{devicename,jdbcType=VARCHAR}
+,#{deviceprice,jdbcType=DECIMAL}
+,#{number,jdbcType=DECIMAL}
+,#{equipmentmoney,jdbcType=DECIMAL}
+,#{creationtime,jdbcType=VARCHAR}
+,#{creatoruserid,jdbcType=DECIMAL}
+,#{lastmodificationtime,jdbcType=VARCHAR}
+,#{lastmodifieruserid,jdbcType=DECIMAL}
+,#{isdeleted,jdbcType=DECIMAL}
+,#{deleteruserid,jdbcType=DECIMAL}
+,#{deletiontime,jdbcType=VARCHAR}
+,#{version,jdbcType=DECIMAL}
+,#{ntype,jdbcType=DECIMAL}
+)
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.fims.entity.DeviceQuotation">
+        update DeviceQuotation
+        <set>
+
+             <if test="id != null ">
+Id = #{id},
+</if>
+ <if test="auditflowid != null ">
+AuditFlowId = #{auditflowid},
+</if>
+ <if test="solutionid != null ">
+SolutionId = #{solutionid},
+</if>
+ <if test="devicename != null and devicename != ''">
+DeviceName = #{devicename},
+</if>
+ <if test="deviceprice != null ">
+DevicePrice = #{deviceprice},
+</if>
+ <if test="number != null ">
+Number = #{number},
+</if>
+ <if test="equipmentmoney != null ">
+equipmentMoney = #{equipmentmoney},
+</if>
+ <if test="creationtime != null and creationtime != ''">
+CreationTime = #{creationtime},
+</if>
+ <if test="creatoruserid != null ">
+CreatorUserId = #{creatoruserid},
+</if>
+ <if test="lastmodificationtime != null and lastmodificationtime != ''">
+LastModificationTime = #{lastmodificationtime},
+</if>
+ <if test="lastmodifieruserid != null ">
+LastModifierUserId = #{lastmodifieruserid},
+</if>
+ <if test="isdeleted != null ">
+IsDeleted = #{isdeleted},
+</if>
+ <if test="deleteruserid != null ">
+DeleterUserId = #{deleteruserid},
+</if>
+ <if test="deletiontime != null and deletiontime != ''">
+DeletionTime = #{deletiontime},
+</if>
+ <if test="version != null ">
+version = #{version},
+</if>
+ <if test="ntype != null ">
+ntype = #{ntype},
+</if>
+
+            version=version+1
+            </set>
+        where
+        id =  #{id} and version= #{version}
+    </update>
+
+
+    <delete id="deleteByIds">
+        delete
+        from
+        DeviceQuotation
+        where
+        id in
+        <foreach collection="idList" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="count" parameterType="com.sunny.fims.entity.DeviceQuotation" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+        from DeviceQuotation DeviceQuotation
+        <include refid="dynamicCondition"/>
+    </select>
+</mapper>
+
